@@ -24,6 +24,20 @@ npm run preview  # serve the production build
 - **Offers** — hidden until real offers are configured (`src/data/offers.ts`).
 - Accessibility: semantic landmarks, skip link, focus states, `prefers-reduced-motion` support, labelled controls.
 
+## Live site
+
+<https://devasainandinimandapalli.github.io/deccan-waffle-house/>
+
+The site is published from the `gh-pages` branch. To redeploy after edits:
+
+```bash
+VITE_BASE=/deccan-waffle-house/ npm run build
+npx gh-pages -d dist            # or push dist/ to the gh-pages branch
+```
+
+`VITE_BASE` is only needed for the project-page subfolder. Without it the build
+targets `/` for local preview or a custom domain.
+
 ## Editing content
 
 Everything customer-facing is data-driven:
