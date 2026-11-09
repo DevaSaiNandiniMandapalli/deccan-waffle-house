@@ -58,6 +58,16 @@
     max-width: 100%;
     height: auto;
   }
+
+  section[id] {
+    scroll-margin-top: 4.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    section[id] {
+      scroll-margin-top: 5.5rem;
+    }
+  }
 }
 
 @layer components {

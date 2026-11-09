@@ -48,7 +48,7 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className={`group relative text-[0.78rem] font-bold uppercase tracking-[0.16em] transition-colors ${
+                className={`group relative inline-flex items-center py-2 text-[0.78rem] font-bold uppercase tracking-[0.16em] transition-colors ${
                   scrolled ? "text-espresso/70 hover:text-espresso" : "text-cream/80 hover:text-cream"
                 }`}
               >
