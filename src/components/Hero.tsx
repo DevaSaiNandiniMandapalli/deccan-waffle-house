@@ -111,7 +111,7 @@ export default function Hero({ ready }: { ready: boolean }) {
           <motion.div style={reduce ? undefined : { y: imgY, scale: imgScale }} className="relative">
             <div className="relative overflow-hidden rounded-t-[15rem] rounded-b-[2.2rem] border border-cream/15 bg-cocoa shadow-[0_50px_80px_-40px_rgba(0,0,0,0.9)]">
               <img
-                src="/images/hero-waffle-wide.webp"
+                src="images/hero-waffle-wide.webp"
                 alt="A chocolate-loaded waffle served warm, with sauce pouring over the edges"
                 width={1800}
                 height={1125}

@@ -47,7 +47,7 @@ export default function Story() {
             <div className="relative">
               <div className="relative overflow-hidden rounded-[2rem] rounded-tl-[9rem] border border-cream/15">
                 <motion.img
-                  src="/images/story-waffle.webp"
+                  src="images/story-waffle.webp"
                   alt="Chocolate sauce being poured over a freshly baked waffle"
                   width={900}
                   height={1200}

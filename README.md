@@ -16,7 +16,7 @@ npm run preview  # serve the production build
 ## What's inside
 
 - **Cinematic hero** — layered parallax, chocolate-drip SVG, floating ingredients, live scroll progress and a branded preloader.
-- **Interactive menu** — category tabs (Waffles, Mocktails, Fries, Snacks) with animated filtering, veg labels and per-item imagery.
+- **Interactive menu** — eight categories (Signature Waffles, Bowl Cakes, Waffle Pizza, Classic Waffles, Biscuit Waffles, Mocktails, Fries, Nuggets) transcribed with real prices from the in-store menu card, with animated filtering, veg/non-veg labels and per-item imagery.
 - **Brand story** — editorial split layout with parallax photography and three service pillars.
 - **Find your Deccan** — searchable branch directory with a scroll-respecting map preview, Get Directions (Google Maps), click-to-call, WhatsApp and a placeholder outlet card ready for new locations.
 - **Gallery** — filterable masonry with a keyboard-accessible lightbox (Esc / ← / →).
@@ -42,7 +42,8 @@ Adding an outlet means adding one object to `branches.ts` — the directory, map
 ## Content status (important)
 
 - **No public web listing** for this exact business could be verified during research (see `docs/RESEARCH.md`). Nothing on the site invents ratings, reviews, founding history or delivery listings.
-- **Branch street address, opening hours and prices are intentionally blank** and render as "awaiting confirmation" / "ask at counter". Fill them in `branches.ts` and `menu.ts` when confirmed.
+- **Branch street address and opening hours are intentionally blank** and render as "awaiting confirmation". Fill them in `branches.ts` when confirmed.
+- **Menu prices are real** (from the shop's printed card). Update `src/data/menu.ts` when the counter changes them; sizes such as Medium/Large use the `prices` array.
 - **Social profiles** are not linked because no verified handles were found; the footer shows a neutral placeholder until `site.socials` is populated.
 - **Photography is illustrative stock** (Wikimedia Commons / Openverse, Creative Commons) — not photos of the actual outlet. Replace with the owner's own photography and update `credits.ts`.
 - The two phone numbers come from the brand signage and are presented as central enquiry lines until outlet mapping is confirmed.

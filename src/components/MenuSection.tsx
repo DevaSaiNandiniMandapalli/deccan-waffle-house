@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Phone } from "lucide-react";
 import SectionHeading from "./SectionHeading";
-import { MENU_NOTE, menu } from "../data/menu";
+import { MENU_NOTE, formatPrice, menu } from "../data/menu";
 import { PHONES } from "../data/site";
 
 export default function MenuSection() {
@@ -21,7 +21,7 @@ export default function MenuSection() {
           index="01"
           eyebrow="The menu"
           title="Pick your craving."
-          description="Waffles, mocktails, fries and quick bites — the full Deccan line-up, organised the way you actually order it."
+          description="Signature waffles, bowl cakes, waffle pizzas, mocktails, fries and nuggets — the full counter menu, priced exactly as it is in store."
           aside={
             <a href={`tel:${PHONES[0].tel}`} className="btn btn-dark mt-6 inline-flex">
               <Phone className="h-4 w-4" />
@@ -34,7 +34,11 @@ export default function MenuSection() {
         </h2>
 
         {/* category tabs */}
-        <div className="mt-10 border-b border-espresso/12 sm:mt-12">
+        <div className="relative mt-10 border-b border-espresso/12 sm:mt-12">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute right-0 top-0 z-10 h-full w-10 bg-gradient-to-l from-cream to-transparent lg:hidden"
+          />
           <div
             role="tablist"
             aria-label="Menu categories"
@@ -49,12 +53,18 @@ export default function MenuSection() {
                   id={`tab-${c.id}`}
                   aria-selected={isActive}
                   aria-controls="menu-panel"
-                  onClick={() => setActive(c.id)}
-                  className={`relative shrink-0 px-4 py-4 text-[0.78rem] font-bold uppercase tracking-[0.16em] transition-colors sm:px-5 ${
+                  onClick={(event) => {
+                    setActive(c.id);
+                    const track = event.currentTarget.parentElement;
+                    if (track && track.scrollWidth > track.clientWidth) {
+                      track.scrollTo({ left: event.currentTarget.offsetLeft - 24, behavior: "smooth" });
+                    }
+                  }}
+                  className={`relative shrink-0 px-4 py-4 text-[0.72rem] font-bold uppercase tracking-[0.13em] transition-colors sm:px-4 lg:px-3.5 lg:text-[0.7rem] ${
                     isActive ? "text-espresso" : "text-espresso/40 hover:text-espresso/70"
                   }`}
                 >
-                  {c.label}
+                  {c.short ?? c.label}
                   <span className="ml-2 align-super text-[0.55rem] text-caramel/70">{c.items.length}</span>
                   {isActive && (
                     <motion.span
@@ -128,8 +138,13 @@ export default function MenuSection() {
                         {item.vegetarian ? "Veg" : "Non-veg"}
                       </span>
                       <span className="absolute bottom-4 right-4 rounded-full bg-gold px-3 py-1.5 text-[0.6rem] font-extrabold uppercase tracking-[0.14em] text-espresso">
-                        {item.price === null ? "Ask at counter" : `₹${item.price}`}
+                        {formatPrice(item)}
                       </span>
+                      {item.tag && (
+                        <span className="absolute bottom-4 left-4 rounded-full bg-espresso/80 px-2.5 py-1 text-[0.55rem] font-bold uppercase tracking-[0.14em] text-cream backdrop-blur">
+                          {item.tag}
+                        </span>
+                      )}
                     </div>
                     <div className="flex flex-col gap-2 p-5">
                       <div className="flex items-start justify-between gap-3">
@@ -140,6 +155,15 @@ export default function MenuSection() {
                         />
                       </div>
                       <p className="text-[0.87rem] leading-relaxed text-espresso/60">{item.description}</p>
+                      {item.prices.length > 1 && (
+                        <p className="mt-auto flex flex-wrap gap-x-4 gap-y-1 border-t border-espresso/10 pt-3 text-[0.72rem] font-bold uppercase tracking-[0.12em] text-espresso/55">
+                          {item.prices.map((p) => (
+                            <span key={p.label}>
+                              {p.label} <span className="text-espresso">₹{p.amount}</span>
+                            </span>
+                          ))}
+                        </p>
+                      )}
                     </div>
                   </article>
                 </motion.li>
